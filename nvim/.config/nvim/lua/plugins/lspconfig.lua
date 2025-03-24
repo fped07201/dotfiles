@@ -3,6 +3,7 @@ return {
     {
         'neovim/nvim-lspconfig',
         config = function()
+            local capabilities = require('cmp_nvim_lsp').default_capabilities()
             local lspconfig = require('lspconfig')
 
             -- Define LSP key mappings
@@ -72,6 +73,7 @@ return {
             -- Lua LSP setup
             lspconfig.lua_ls.setup({
                 on_attach = on_attach,
+                capabilities = capabilities,
                 settings = {
                     Lua = {
                         runtime = {
@@ -94,6 +96,7 @@ return {
             -- C++ LSP setup (using clangd)
             lspconfig.clangd.setup({
                 on_attach = on_attach,
+                capabilities = capabilities,
                 cmd = { "clangd", "--background-index", "--clang-tidy" },  -- You can customize the command line options here
                 filetypes = { "c", "cpp", "cc", "cxx", "m", "mm" },  -- Specify C++ related file types
                 settings = {
