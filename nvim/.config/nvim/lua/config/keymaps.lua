@@ -1,5 +1,5 @@
 -- Set leader key to Control (if needed)
-vim.g.mapleader = ","
+vim.g.mapleader = " "
 
 --- Ctrl +a to select all
 vim.keymap.set('n', '<C-a>', 'ggVG', { noremap = true, silent = true })
@@ -18,5 +18,4 @@ vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true
 
 vim.keymap.set("n", "U", "<C-r>", { noremap = true, silent = true })
 vim.keymap.set("v", "<C-c>", '"+y', { noremap = true, silent = true })
-
 

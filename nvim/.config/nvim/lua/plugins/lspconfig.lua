@@ -97,7 +97,7 @@ return {
             lspconfig.clangd.setup({
                 on_attach = on_attach,
                 capabilities = capabilities,
-                cmd = { "clangd", "--background-index", "--clang-tidy" },  -- You can customize the command line options here
+                cmd = { "clangd", "--background-index", "--clang-tidy", "--compile-commands-dir=build" },  -- You can customize the command line options here
                 filetypes = { "c", "cpp", "cc", "cxx", "m", "mm" },  -- Specify C++ related file types
                 settings = {
                     clangd = {
