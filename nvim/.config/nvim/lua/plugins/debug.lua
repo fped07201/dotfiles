@@ -14,12 +14,22 @@ return {
           dapui.open()
         end
         dap.listeners.before.launch.dapui_config = function()
+          -- Map keys for debugger actions using vim.keymap.set
+          vim.keymap.set('n', '<F2>', function() require'dap'.step_into() end, { noremap = true, silent = true })
+          vim.keymap.set('n', '<F3>', function() require'dap'.step_over() end, { noremap = true, silent = true })
+          vim.keymap.set('n', '<F5>', function() require'dap'.continue() end, { noremap = true, silent = true })
+          vim.keymap.set('n', '<F12>', function() require'dap'.terminate() end, { noremap = true, silent = true })
           dapui.open()
         end
         dap.listeners.before.event_terminated.dapui_config = function()
           dapui.close()
         end
         dap.listeners.before.event_exited.dapui_config = function()
+           -- Delete the key mappings
+          vim.keymap.del('n', '<F2>')
+          vim.keymap.del('n', '<F3>')
+          vim.keymap.del('n', '<F5>')
+          vim.keymap.del('n', '<F12>')
           dapui.close()
         end
 
@@ -31,7 +41,7 @@ return {
 
         dap.configurations.c = {
           {
-            name = "Launch",
+            name = "Launch Manual with arguments",
             type = "gdb",
             request = "launch",
             program = function()
@@ -47,7 +57,7 @@ return {
 
         dap.configurations.cpp = {
           {
-            name = "Launch",
+            name = "Launch Manual with arguments",
             type = "gdb",
             request = "launch",
             program = function()
@@ -60,6 +70,23 @@ return {
             stopAtBeginningOfMainSubprogram = true,
           },
         }
+
+        -- Path to local config
+        local local_config_path = vim.fn.getcwd() .. "/.nvim/dap_config.lua"
+        -- Check if the file exists before attempting to load
+        if vim.fn.filereadable(local_config_path) == 1 then
+          local ok, result = pcall(dofile, local_config_path)
+          if ok and type(result) == "table" then
+            for _, config in ipairs(result) do
+              table.insert(dap.configurations.c, config)
+              table.insert(dap.configurations.cpp, config)
+            end
+          else
+            vim.notify("[DAP] Failed to load or parse .nvim/dap_config.lua", vim.log.levels.WARN)
+          end
+        else
+          vim.notify("[DAP] No project-local DAP config found in .nvim", vim.log.levels.DEBUG)
+        end
 
         vim.keymap.set('n', '<Leader>dt', dap.toggle_breakpoint, {})
         vim.keymap.set('n', '<Leader>dc', dap.continue, {})
