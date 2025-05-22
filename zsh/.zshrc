@@ -132,6 +132,7 @@ alias t32S32G_2='/home/fpedrera/t32_2022/bin/pc_linux64/t32marm -c /home/fpedrer
 alias t32FIR='/home/fpedrera/Desktop/test/T32S32G3/bin/pc_linux64/t32marm -c /home/fpedrera/Desktop/test/T32S32G3/config_usb_s32g.t32'
 alias t32_2023='/home/fpedrera/t32_2023/bin/pc_linux64/t32mppc -c /home/fpedrera/teb_projects/TraceConfigs/config_usb_2023.t32'
 alias t32_2024='/home/fpedrera/t32_2024/bin/pc_linux64/t32marm -c /home/fpedrera/teb_projects/TraceConfigs/config_usb_2024.t32'
+alias t32_2024_2='/home/fpedrera/t32_2024/bin/pc_linux64/t32marm -c /home/fpedrera/teb_projects/TraceConfigs/config_usb_2024_2.t32'
 
 # Configure alias for SIP relay
 export RELAY_SN="0005771676"
@@ -147,5 +148,8 @@ alias S32DS='/home/fpedrera/NXP/S32DS.3.5/s32ds.sh'
 # FZF Alias
 alias fzf="fzf --preview 'batcat --style=numbers --color=always --line-range=:500 {}'"
 alias fzf_vim="fzf --preview 'batcat --style=numbers --color=always --line-range=:500 {}' --bind 'enter:execute(nvim {})'"
+
+# Lazygit
+alias lg="lazygit"
 
 # neofetch
