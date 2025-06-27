@@ -143,7 +143,7 @@ alias relay_debug_run='cd /home/fpedrera/Documents/RelaySip/DenkoviRelayCommandL
 alias relay_stop='cd /home/fpedrera/Documents/RelaySip/DenkoviRelayCommandLineTool;sudo /home/fpedrera/Documents/RelaySip/DenkoviRelayCommandLineTool/stop.sh $RELAY_SN; cd -'
 
 # Configure alias fur S32DS
-alias S32DS='/home/fpedrera/NXP/S32DS.3.5/s32ds.sh'
+alias S32DS_G2='/home/fpedrera/NXP/S32DS.3.5/s32ds.sh'
 
 # FZF Alias
 alias fzf="fzf --preview 'batcat --style=numbers --color=always --line-range=:500 {}'"

@@ -48,7 +48,7 @@ return {
 
                 if vim.lsp.buf.format then
                     -- Format document
-                    vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, bufopts)
+                    vim.keymap.set('n', '<leader>fo', vim.lsp.buf.format, bufopts)
                 end
 
                 if vim.lsp.buf.code_action then
@@ -104,6 +104,22 @@ return {
                         -- Additional settings for clangd can be added here if needed
                     },
                 },
+            })
+            -- Python LSP setup (using pylsp)
+            lspconfig.pylsp.setup({
+                settings = {
+                    pylsp = {
+                        plugins = {
+                            pycodestyle = {
+                                enabled = true,
+                                ignore = { "E271", "E401", "E221", "E501", "E261" }
+                            },
+                            pyflakes = { enabled = true },
+                            rope_completion = { enabled = true },
+                            black = { enabled = true }, -- optional: enable if installed
+                        }
+                    }
+                }
             })
         end
     },
