@@ -19,3 +19,6 @@ vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true
 vim.keymap.set("n", "U", "<C-r>", { noremap = true, silent = true })
 vim.keymap.set("v", "<C-c>", '"+y', { noremap = true, silent = true })
 
+vim.keymap.set('n', '<leader>cn', ':cnext<CR>', { desc = 'Quickfix next' })
+vim.keymap.set('n', '<leader>cp', ':cprev<CR>', { desc = 'Quickfix previous' })
+
