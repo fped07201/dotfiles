@@ -148,6 +148,7 @@ alias S32DS_G2='/home/fpedrera/NXP/S32DS.3.5/s32ds.sh'
 # FZF Alias
 alias fzf="fzf --preview 'batcat --style=numbers --color=always --line-range=:500 {}'"
 alias fzf_vim="fzf --preview 'batcat --style=numbers --color=always --line-range=:500 {}' --bind 'enter:execute(nvim {})'"
+alias fzfc="fzf | xargs realpath | xclip -selection clipboard"
 
 # Lazygit
 alias lg="lazygit"
