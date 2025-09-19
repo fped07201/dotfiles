@@ -68,6 +68,14 @@ return {
                 if vim.diagnostic.open_float then
                     vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, bufopts)
                 end
+                if client.name == "clangd" then
+                    vim.keymap.set(
+                        'n',
+                        '<A-o>',
+                        '<cmd>ClangdSwitchSourceHeader<CR>',
+                        { buffer = bufnr, noremap = true, silent = true, desc = "Switch between header/source" }
+                    )
+                end
             end
 
             -- Lua LSP setup
