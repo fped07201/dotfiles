@@ -10,7 +10,7 @@ return {
         })
 
         configs.setup({
-          ensure_installed = { "cpp", "lua", "html", "python", "yaml", "json", "csv", "bash", "t32" },
+          ensure_installed = { "cpp", "lua", "html", "python", "yaml", "json", "csv", "bash", "t32", "markdown"},
           sync_install = false,
           highlight = { enable = true },
           indent = { enable = true },

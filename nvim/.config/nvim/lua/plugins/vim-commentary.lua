@@ -11,7 +11,7 @@ return {
                 -- Map gcC to use /** */ style
                 vim.keymap.set("n", "gcC", function()
                     local cs = vim.bo.commentstring
-                    vim.bo.commentstring = "/** %s */"
+                    vim.bo.commentstring = "/* %s */"
                     vim.cmd("Commentary") -- comment current line
                     vim.bo.commentstring = cs -- restore
                 end, { buffer = true })
@@ -19,7 +19,7 @@ return {
                 -- Visual mode support for gcC
                 vim.keymap.set("x", "gcC", function()
                     local cs = vim.bo.commentstring
-                    vim.bo.commentstring = "/** %s */"
+                    vim.bo.commentstring = "/* %s */"
                     vim.cmd("'<,'>Commentary") -- comment selected lines
                     vim.bo.commentstring = cs
                 end, { buffer = true })
