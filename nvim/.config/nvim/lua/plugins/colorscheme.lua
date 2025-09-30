@@ -13,7 +13,7 @@ return {
         priority = 1000,
         enabled = true,
         config = function()
-            -- vim.cmd.colorscheme("tokyonight")
+            vim.cmd.colorscheme("tokyonight")
         end
     },
     {
@@ -31,7 +31,7 @@ return {
         enabled = true,
         flavour = "mocha",
         config = function()
-            vim.cmd.colorscheme("catppuccin")
+            -- vim.cmd.colorscheme("catppuccin")
         end
     }
 }
