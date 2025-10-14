@@ -119,7 +119,7 @@ return {
                     pylsp = {
                         plugins = {
                             pycodestyle = {
-                                enabled = true,
+                                enabled = false,
                                 ignore = { "E271", "E401", "E221", "E501", "E261" }
                             },
                             pyflakes = { enabled = true },

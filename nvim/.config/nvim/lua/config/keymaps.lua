@@ -22,3 +22,8 @@ vim.keymap.set("v", "<C-c>", '"+y', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>cn', ':cnext<CR>', { desc = 'Quickfix next' })
 vim.keymap.set('n', '<leader>cp', ':cprev<CR>', { desc = 'Quickfix previous' })
 
+vim.keymap.set('n', '<C-Up>', ':resize +2<CR>', { silent = true })
+vim.keymap.set('n', '<C-Down>', ':resize -2<CR>', { silent = true })
+vim.keymap.set('n', '<C-Left>', ':vertical resize -2<CR>', { silent = true })
+vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>', { silent = true })
+
