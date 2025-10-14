@@ -66,8 +66,8 @@ return {
                             -- size = 0.5
                         },
                         {
-                          id = "console",
-                          size = 0.5
+                            id = "console",
+                            size = 0.5
                         }
                     },
                     position = "bottom",
@@ -149,6 +149,43 @@ return {
             },
         }
 
+        -- Configure the Python adapter
+        dap.configurations.python = {
+            {
+                type = "python",
+                request = "launch",
+                name = "Launch file with args",
+                program = "${file}",
+                console = "integratedTerminal",
+                justMyCode = false,
+                cwd = vim.fn.getcwd(), -- or "${workspaceFolder}"
+                args = function()
+                    local input = vim.fn.input('Arguments: ')
+                    return vim.split(input, " +") -- split by spaces
+                end,
+            },
+            {
+                type = "python",
+                request = "launch",
+                name = "Launch file (interactive cwd & args)",
+                program = "${file}", -- current file
+                console = "integratedTerminal",
+                justMyCode = false,
+
+                -- Ask for working directory at runtime
+                cwd = function()
+                    local input = vim.fn.input('Working directory: ', vim.fn.getcwd())
+                    return input
+                end,
+
+                -- Ask for program arguments at runtime
+                args = function()
+                    local input = vim.fn.input('Arguments: ')
+                    return vim.split(input, " +") -- split by spaces
+                end,
+            },
+        }
+
         -- Path to local config
         local local_config_path = vim.fn.getcwd() .. "/.nvim/dap_config.lua"
         -- Check if the file exists before attempting to load
@@ -158,6 +195,7 @@ return {
                 for _, config in ipairs(result) do
                     table.insert(dap.configurations.c, config)
                     table.insert(dap.configurations.cpp, config)
+                    table.insert(dap.configurations.python, config)
                 end
             else
                 vim.notify("[DAP] Failed to load or parse .nvim/dap_config.lua", vim.log.levels.WARN)
