@@ -10,7 +10,6 @@ return {
         local dapui = require('dapui')
         local dap_python = require('dap-python')
 
-        require("dap-python").setup("python3")
         dapui.setup(
             {
                 controls = {
@@ -150,6 +149,7 @@ return {
         }
 
         -- Configure the Python adapter
+        require("dap-python").setup("python3")
         dap.configurations.python = {
             {
                 type = "python",
@@ -185,6 +185,12 @@ return {
                 end,
             },
         }
+
+        -- Load VSCode launch.json
+        require("dap.ext.vscode").load_launchjs(nil, {
+            gdb = { "c", "cpp" },
+            python = { "python" },
+        })
 
         -- Path to local config
         local local_config_path = vim.fn.getcwd() .. "/.nvim/dap_config.lua"
