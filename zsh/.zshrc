@@ -153,4 +153,8 @@ alias fzfc="fzf | xargs realpath | xclip -selection clipboard"
 # Lazygit
 alias lg="lazygit"
 
-# neofetch
+alias termshark='TERM=xterm-256color termshark'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

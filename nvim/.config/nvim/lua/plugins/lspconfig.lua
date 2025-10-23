@@ -21,10 +21,10 @@ return {
                     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
                 end
 
-                if vim.lsp.buf.type_definition then
-                    -- Go to type definition
-                    vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, bufopts)
-                end
+                -- if vim.lsp.buf.type_definition then
+                --     -- Go to type definition
+                --     vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, bufopts)
+                -- end
 
                 if vim.lsp.buf.references then
                     -- Find references
@@ -85,7 +85,7 @@ return {
                 settings = {
                     Lua = {
                         runtime = {
-                            version = 'LuaJIT', -- Lua version (LuaJIT for Neovim)
+                            version = 'LuaJIT',                  -- Lua version (LuaJIT for Neovim)
                             path = vim.split(package.path, ';'), -- Set Lua runtime path
                         },
                         diagnostics = {
@@ -105,8 +105,8 @@ return {
             lspconfig.clangd.setup({
                 on_attach = on_attach,
                 capabilities = capabilities,
-                cmd = { "clangd", "--background-index", "--clang-tidy", "--compile-commands-dir=build", "--header-insertion=never" },  -- You can customize the command line options here
-                filetypes = { "c", "cpp", "cc", "cxx", "m", "mm" },  -- Specify C++ related file types
+                cmd = { "clangd", "--background-index", "--clang-tidy", "--compile-commands-dir=build", "--header-insertion=never" }, -- You can customize the command line options here
+                filetypes = { "c", "cpp", "cc", "cxx", "m", "mm" },                                                                   -- Specify C++ related file types
                 settings = {
                     clangd = {
                         -- Additional settings for clangd can be added here if needed
@@ -129,6 +129,11 @@ return {
                     }
                 }
             })
+            -- Bash LSP setup
+            lspconfig.bashls.setup({
+                on_attach = on_attach,
+                capabilities = capabilities,
+            })
         end
     },
 
@@ -145,9 +150,8 @@ return {
         'williamboman/mason-lspconfig.nvim',
         config = function()
             require('mason-lspconfig').setup({
-                ensure_installed = { 'lua_ls', 'clangd' },  -- Ensure both Lua and C++ LSPs are installed
+                ensure_installed = { 'lua_ls', 'clangd', 'bashls' }, -- Ensure both Lua and C++ LSPs are installed
             })
         end
     },
 }
-
