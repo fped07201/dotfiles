@@ -5,6 +5,8 @@ vim.opt.relativenumber = true -- Relative numbers for all other lines
 -- Enable mouse support
 vim.opt.mouse = "a" -- Enable mouse in all modes (normal, insert, visual, etc.)
 
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4

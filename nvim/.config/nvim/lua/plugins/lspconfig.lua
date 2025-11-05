@@ -106,7 +106,7 @@ return {
                 on_attach = on_attach,
                 capabilities = capabilities,
                 cmd = { "clangd", "--background-index", "--clang-tidy", "--compile-commands-dir=build", "--header-insertion=never" }, -- You can customize the command line options here
-                filetypes = { "c", "cpp", "cc", "cxx", "m", "mm" },                                                                   -- Specify C++ related file types
+                filetypes = { "c", "cpp", "cc", "cxx", "h", "hpp", "m", "mm" },                                                                   -- Specify C++ related file types
                 settings = {
                     clangd = {
                         -- Additional settings for clangd can be added here if needed
