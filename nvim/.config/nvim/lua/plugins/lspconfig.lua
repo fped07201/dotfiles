@@ -4,7 +4,6 @@ return {
         'neovim/nvim-lspconfig',
         config = function()
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
-            local lspconfig = require('lspconfig')
 
             -- Define LSP key mappings
             local function on_attach(client, bufnr)
@@ -79,7 +78,7 @@ return {
             end
 
             -- Lua LSP setup
-            lspconfig.lua_ls.setup({
+            vim.lsp.config("lua_ls", {
                 on_attach = on_attach,
                 capabilities = capabilities,
                 settings = {
@@ -100,21 +99,22 @@ return {
                     },
                 },
             })
-
+            vim.lsp.enable("lua_ls")
             -- C++ LSP setup (using clangd)
-            lspconfig.clangd.setup({
+            vim.lsp.config("clangd", {
                 on_attach = on_attach,
                 capabilities = capabilities,
                 cmd = { "clangd", "--background-index", "--clang-tidy", "--compile-commands-dir=build", "--header-insertion=never" }, -- You can customize the command line options here
-                filetypes = { "c", "cpp", "cc", "cxx", "h", "hpp", "m", "mm" },                                                                   -- Specify C++ related file types
+                filetypes = { "c", "cpp", "cc", "cxx", "h", "hpp", "m", "mm" },                                                       -- Specify C++ related file types
                 settings = {
                     clangd = {
                         -- Additional settings for clangd can be added here if needed
                     },
                 },
             })
+            vim.lsp.enable("clangd")
             -- Python LSP setup (using pylsp)
-            lspconfig.pylsp.setup({
+            vim.lsp.config("pylsp", {
                 settings = {
                     pylsp = {
                         plugins = {
@@ -129,11 +129,13 @@ return {
                     }
                 }
             })
+            vim.lsp.enable("pylsp")
             -- Bash LSP setup
-            lspconfig.bashls.setup({
+            vim.lsp.config("bashls", {
                 on_attach = on_attach,
                 capabilities = capabilities,
             })
+            vim.lsp.enable("bashls")
         end
     },
 
