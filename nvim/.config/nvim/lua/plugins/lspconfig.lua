@@ -9,65 +9,50 @@ return {
             local function on_attach(client, bufnr)
                 local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
-                -- Ensure LSP functions are available
-                if vim.lsp.buf.definition then
-                    -- Go to definition
-                    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-                end
-
-                if vim.lsp.buf.declaration then
-                    -- Go to declaration
-                    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-                end
-
-                -- if vim.lsp.buf.type_definition then
-                --     -- Go to type definition
+                vim.diagnostic.config({
+                    virtual_text = true, -- shows inline text
+                    signs = true,        -- shows gutter signs
+                    underline = false,
+                    update_in_insert = false,
+                })
+                vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+                vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
                 --     vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, bufopts)
-                -- end
+                vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+                vim.keymap.set('n', 'gn', vim.lsp.buf.rename, bufopts)
+                vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+                vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+                vim.keymap.set('n', '<leader>fo', vim.lsp.buf.format, bufopts)
+                vim.keymap.set("v", "<leader>fo", function()
+                    vim.lsp.buf.format({
+                        range = {
+                            ["start"] = vim.api.nvim_buf_get_mark(0, "<"),
+                            ["end"] = vim.api.nvim_buf_get_mark(0, ">"),
+                        },
+                    })
+                end, bufopts)
+                vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+                vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1 }) end, bufopts)
+                vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1 }) end, bufopts)
+                vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, bufopts)
 
-                if vim.lsp.buf.references then
-                    -- Find references
-                    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-                end
-
-                if vim.lsp.buf.rename then
-                    -- Rename symbol
-                    vim.keymap.set('n', 'gn', vim.lsp.buf.rename, bufopts)
-                end
-
-                if vim.lsp.buf.hover then
-                    -- Show hover information
-                    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-                end
-
-                if vim.lsp.buf.signature_help then
-                    -- Signature help
-                    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-                end
-
-                if vim.lsp.buf.format then
-                    -- Format document
-                    vim.keymap.set('n', '<leader>fo', vim.lsp.buf.format, bufopts)
-                end
-
-                if vim.lsp.buf.code_action then
-                    -- Code actions
-                    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-                end
-
-                if vim.diagnostic.goto_prev then
-                    -- Show diagnostics
-                    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, bufopts)
-                end
-
-                if vim.diagnostic.goto_next then
-                    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, bufopts)
-                end
-
-                if vim.diagnostic.open_float then
-                    vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, bufopts)
-                end
                 if client.name == "clangd" then
+                    vim.api.nvim_buf_create_user_command(bufnr, "ClangdSwitchSourceHeader", function()
+                        local params = { uri = vim.uri_from_bufnr(0) }
+
+                        client.request("textDocument/switchSourceHeader", params, function(err, result)
+                            if err then
+                                vim.notify("Clangd error: " .. err.message, vim.log.levels.ERROR)
+                                return
+                            end
+                            if not result then
+                                vim.notify("No corresponding source/header file found", vim.log.levels.INFO)
+                                return
+                            end
+                            vim.cmd("edit " .. vim.uri_to_fname(result))
+                        end, bufnr)
+                    end, { desc = "Switch between header/source using clangd" })
+
                     vim.keymap.set(
                         'n',
                         '<A-o>',
@@ -76,66 +61,36 @@ return {
                     )
                 end
             end
+            -- LSP server configs
+            local servers = {
+                lua_ls = {
+                    settings = {
+                        Lua = {
+                            runtime = { version = 'LuaJIT', path = vim.split(package.path, ';') },
+                            diagnostics = { globals = { 'vim' } },
+                            workspace = { library = vim.api.nvim_get_runtime_file('', true) },
+                            telemetry = { enable = false },
+                        },
+                    },
+                },
+                clangd = {
+                    cmd = { "clangd", "--background-index", "--clang-tidy", "--compile-commands-dir=build", "--header-insertion=never" },
+                    filetypes = { "c", "cpp", "cc", "cxx", "h", "hpp", "m", "mm" },
+                },
+                pyright = {},
+                ruff = {},
+                bashls = {},
+                cmake = {},
+                yamlls = {},
+                gitlab_ci_ls = {},
+            }
 
-            -- Lua LSP setup
-            vim.lsp.config("lua_ls", {
-                on_attach = on_attach,
-                capabilities = capabilities,
-                settings = {
-                    Lua = {
-                        runtime = {
-                            version = 'LuaJIT',                  -- Lua version (LuaJIT for Neovim)
-                            path = vim.split(package.path, ';'), -- Set Lua runtime path
-                        },
-                        diagnostics = {
-                            globals = { 'vim' }, -- Recognize 'vim' as a global
-                        },
-                        workspace = {
-                            library = vim.api.nvim_get_runtime_file('', true), -- Use Neovim runtime files as the workspace
-                        },
-                        telemetry = {
-                            enable = false, -- Disable telemetry
-                        },
-                    },
-                },
-            })
-            vim.lsp.enable("lua_ls")
-            -- C++ LSP setup (using clangd)
-            vim.lsp.config("clangd", {
-                on_attach = on_attach,
-                capabilities = capabilities,
-                cmd = { "clangd", "--background-index", "--clang-tidy", "--compile-commands-dir=build", "--header-insertion=never" }, -- You can customize the command line options here
-                filetypes = { "c", "cpp", "cc", "cxx", "h", "hpp", "m", "mm" },                                                       -- Specify C++ related file types
-                settings = {
-                    clangd = {
-                        -- Additional settings for clangd can be added here if needed
-                    },
-                },
-            })
-            vim.lsp.enable("clangd")
-            -- Python LSP setup (using pylsp)
-            vim.lsp.config("pylsp", {
-                settings = {
-                    pylsp = {
-                        plugins = {
-                            pycodestyle = {
-                                enabled = false,
-                                ignore = { "E271", "E401", "E221", "E501", "E261" }
-                            },
-                            pyflakes = { enabled = true },
-                            rope_completion = { enabled = true },
-                            black = { enabled = true }, -- optional: enable if installed
-                        }
-                    }
-                }
-            })
-            vim.lsp.enable("pylsp")
-            -- Bash LSP setup
-            vim.lsp.config("bashls", {
-                on_attach = on_attach,
-                capabilities = capabilities,
-            })
-            vim.lsp.enable("bashls")
+            -- Configure servers using the new vim.lsp.config API
+            for name, opts in pairs(servers) do
+                opts = vim.tbl_deep_extend("force", { on_attach = on_attach, capabilities = capabilities }, opts)
+                vim.lsp.config(name, opts) -- define/configure the server
+                vim.lsp.enable(name)       -- enable it for its filetypes
+            end
         end
     },
 
@@ -152,8 +107,9 @@ return {
         'williamboman/mason-lspconfig.nvim',
         config = function()
             require('mason-lspconfig').setup({
-                ensure_installed = { 'lua_ls', 'clangd', 'bashls' }, -- Ensure both Lua and C++ LSPs are installed
+                ensure_installed = { 'lua_ls', 'clangd', 'bashls', 'cmake', 'pyright', 'ruff', 'yamlls', 'gitlab_ci_ls' },
             })
         end
     },
+
 }

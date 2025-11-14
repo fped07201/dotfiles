@@ -111,10 +111,10 @@ export EDITOR='nvim'
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
 # Navigation aliases
-alias l='exa'
-alias la='exa -a'
-alias ll='exa -lah'
-alias ls='exa --color=auto'
+alias l='eza'
+alias la='eza -a'
+alias ll='eza -lah'
+alias ls='eza --color=auto'
 export PATH=$PATH:/home/fpedrera/.local/bin
 eval "$(zoxide init zsh)"
 alias cd=z
