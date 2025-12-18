@@ -60,6 +60,10 @@ return {
                         { buffer = bufnr, noremap = true, silent = true, desc = "Switch between header/source" }
                     )
                 end
+
+                if client.server_capabilities.inlayHintProvider then
+                    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+                end
             end
             -- LSP server configs
             local servers = {
