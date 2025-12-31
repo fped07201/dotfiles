@@ -63,6 +63,13 @@ return {
 
                 if client.server_capabilities.inlayHintProvider then
                     vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+                    vim.keymap.set("n", "<leader>th", function()
+                        local bufnr = 0
+                        vim.lsp.inlay_hint.enable(
+                            not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }),
+                            { bufnr = bufnr }
+                        )
+                    end, { desc = "Toggle inlay hints" })
                 end
             end
             -- LSP server configs
