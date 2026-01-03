@@ -35,10 +35,7 @@ exec --no-startup-id picom -b --vsync
 set $left   eDP-1
 set $middle DP-2-1
 set $right  DP-2-2
-exec_always --no-startup-id xrandr \
-  --output $left  --primary --mode 1920x1080 --pos 0x0 \
-  --output $middle --mode 1920x1080 --pos 1920x0 \
-  --output $right --mode 1920x1080 --pos 3840x0
+exec_always --no-startup-id ~/.config/i3/setup_monitors.sh $left $middle $right
 
 # Border configuration
 default_border pixel 3
@@ -54,9 +51,6 @@ client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
-
-# Wallpaper
-exec --no-startup-id feh --bg-fill /home/fpedrera/Pictures/Wallpapers/kamehouse.jpg
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -209,9 +203,6 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
-# Launch polybar
-exec --no-startup-id ~/.config/polybar/launch.sh
 
 # Screenshot bindings
 bindsym Print exec --no-startup-id flameshot gui
