@@ -216,5 +216,5 @@ bindsym $mod+b exec --no-startup-id google-chrome; workspace number $ws9
 bindsym $mod+t exec --no-startup-id firefox && teams-for-linux
 assign [class="teams-for-linux"] 1
 assign [class="firefox_firefox"] 2
-assign [class="Spotify"] 3
-assign [class="Google-chrome"] 9
+assign [class="Spotify"] 9
+assign [class="Google-chrome"] 3
