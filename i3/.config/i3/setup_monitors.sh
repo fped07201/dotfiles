@@ -37,16 +37,14 @@ xrandr \
 sleep 0.2
 
 # Launch polybar on all monitors
-killall -q polybar
-while pgrep -x polybar >/dev/null; do sleep 0.1; done
+while pgrep -x polybar >/dev/null; do sleep 0.1 && killall -q polybar; done
 
 # Start primary FIRST (tray owner)
-polybar i3-primary &
+MONITOR=$left polybar i3-primary &
 
 # Start secondary bars
-for m in $(polybar --list-monitors | cut -d: -f1 | grep -v "$left"); do
-  MONITOR=$m polybar i3-secondary &
-done
+MONITOR=$middle polybar i3-secondary &
+MONITOR=$right  polybar i3-secondary &
 
 # Wallpaper
 feh --bg-fill /home/fpedrera/Pictures/Wallpapers/kamehouse.jpg

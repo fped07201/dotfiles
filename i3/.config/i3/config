@@ -33,8 +33,8 @@ exec --no-startup-id picom --experimental-backends
 
 # Screen configuration
 set $left   eDP-1
-set $middle DP-2-1
-set $right  DP-2-2
+set $middle DP-1-1
+set $right  DP-1-2
 exec_always --no-startup-id ~/.config/i3/setup_monitors.sh $left $middle $right
 
 # Border configuration
@@ -210,6 +210,9 @@ bindsym $mod+r mode "resize"
 
 # Screenshot bindings
 bindsym Print exec --no-startup-id flameshot gui
+
+# Lock screen
+bindsym $mod+x exec --no-startup-id ~/.config/i3/lock.sh
 
 # Workflow configs
 bindsym $mod+b exec --no-startup-id google-chrome; workspace number $ws3
