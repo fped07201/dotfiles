@@ -1,10 +1,10 @@
 #!/bin/sh
 
-WHITE='#ffffff77'
+INSIDE='#0480c1c0'
 BLANK='#00000000'
 CLEAR='#ffffff22'
-DEFAULT='#000000'
-TEXT='#000000'
+DEFAULT='#dddddd'
+TEXT='#dddddd'
 WRONG='#880000bb'
 VERIFYING='#9900bbbb'
 
@@ -15,7 +15,7 @@ i3lock-color \
 --insidewrong-color=$CLEAR   \
 --ringwrong-color=$WRONG     \
 \
---inside-color=$WHITE        \
+--inside-color=$INSIDE        \
 --ring-color=$DEFAULT        \
 --line-color=$BLANK          \
 --separator-color=$DEFAULT   \
@@ -34,4 +34,5 @@ i3lock-color \
 --indicator                  \
 --time-str="%H:%M:%S"        \
 --date-str="%A, %Y-%m-%d"       \
---keylayout 1                \
+--radius 100               \
+# --keylayout 1                \

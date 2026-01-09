@@ -1,4 +1,4 @@
-chosen=$(printf "󰐥 Power Off\n Restart\n Log out\n󰤄 Suspend\n Lock Screen" | rofi -dmenu -i -l 5 -theme ~/.config/rofi/config.rasi)
+chosen=$(printf "󰐥 Power Off\n Restart\n󰍃 Log out\n󰤄 Suspend\n Lock Screen" | rofi -dmenu -i -l 5 -theme ~/.config/rofi/config.rasi)
 
 case "$chosen" in 
     "󰐥 Power Off")
@@ -14,7 +14,7 @@ case "$chosen" in
         systemctl suspend
         ;;
     " Lock Screen")
-        ~/.config/i3/lock.sh
+        ~/.config/scripts/lockscreen.sh
         ;;
     *)
         exit 1
