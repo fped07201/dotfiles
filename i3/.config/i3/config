@@ -160,7 +160,7 @@ bindsym $mod+x exec --no-startup-id ~/.config/scripts/lockscreen.sh
 bindsym $mod+p exec --no-startup-id ~/.config/scripts/powermenu.sh
 
 # Workflow configs
-bindsym $mod+b exec --no-startup-id google-chrome; workspace number $ws3
+bindsym $mod+b exec --no-startup-id google-chrome; workspace number 3
 bindsym $mod+t exec --no-startup-id firefox && teams-for-linux
 assign [class="teams-for-linux"] 1
 assign [class="firefox_firefox"] 2
