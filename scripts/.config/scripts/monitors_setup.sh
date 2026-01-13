@@ -44,11 +44,13 @@ MONITOR="$LEFT" polybar i3-primary &
 feh --bg-fill /home/fpedrera/Pictures/Wallpapers/kamehouse.jpg
 
 # Generate workspace.conf
+MIDDLE_MON=${MIDDLE:-$LEFT}
+RIGHT_MON=${RIGHT:-$LEFT}
 OUTPUT_FILE="$HOME/.config/i3/workspaces.conf"
 cat <<EOL > "$OUTPUT_FILE"
 set \$mon1 $LEFT
-set \$mon2 $MIDDLE
-set \$mon3 $RIGHT
+set \$mon2 $MIDDLE_MON
+set \$mon3 $RIGHT_MON
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.

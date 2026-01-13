@@ -166,3 +166,4 @@ assign [class="teams-for-linux"] 1
 assign [class="firefox_firefox"] 2
 assign [class="Spotify"] 9
 assign [class="Google-chrome"] 3
+for_window [class="gnome-calculator"] floating enable
