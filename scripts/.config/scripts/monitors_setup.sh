@@ -11,6 +11,9 @@ echo "  Left:   ${LEFT}"
 echo "  Middle: ${MIDDLE:-<none>}"
 echo "  Right:  ${RIGHT:-<none>}"
 
+MIDDLE_MON=${MIDDLE:-$LEFT}
+RIGHT_MON=${RIGHT:-$LEFT}
+
 # Turn off external monitors
 [ -n "$MIDDLE" ] && xrandr --output "$MIDDLE" --off
 [ -n "$RIGHT" ]  && xrandr --output "$RIGHT"  --off
@@ -43,9 +46,17 @@ MONITOR="$LEFT" polybar i3-primary &
 # Wallpaper
 feh --bg-fill /home/fpedrera/Pictures/Wallpapers/kamehouse.jpg
 
+i3-msg "workspace 1; move workspace to output $LEFT"
+i3-msg "workspace 2; move workspace to output $MIDDLE_MON"
+i3-msg "workspace 3; move workspace to output $RIGHT_MON"
+i3-msg "workspace 4; move workspace to output $LEFT"
+i3-msg "workspace 5; move workspace to output $MIDDLE_MON"
+i3-msg "workspace 6; move workspace to output $RIGHT_MON"
+i3-msg "workspace 7; move workspace to output $LEFT"
+i3-msg "workspace 8; move workspace to output $MIDDLE_MON"
+i3-msg "workspace 9; move workspace to output $RIGHT_MON"
+
 # Generate workspace.conf
-MIDDLE_MON=${MIDDLE:-$LEFT}
-RIGHT_MON=${RIGHT:-$LEFT}
 OUTPUT_FILE="$HOME/.config/i3/workspaces.conf"
 cat <<EOL > "$OUTPUT_FILE"
 set \$mon1 $LEFT
