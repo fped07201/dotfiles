@@ -46,15 +46,15 @@ MONITOR="$LEFT" polybar i3-primary &
 # Wallpaper
 feh --bg-fill /home/fpedrera/Pictures/Wallpapers/kamehouse.jpg
 
-i3-msg "workspace 1; move workspace to output $LEFT"
-i3-msg "workspace 2; move workspace to output $MIDDLE_MON"
-i3-msg "workspace 3; move workspace to output $RIGHT_MON"
 i3-msg "workspace 4; move workspace to output $LEFT"
 i3-msg "workspace 5; move workspace to output $MIDDLE_MON"
 i3-msg "workspace 6; move workspace to output $RIGHT_MON"
 i3-msg "workspace 7; move workspace to output $LEFT"
 i3-msg "workspace 8; move workspace to output $MIDDLE_MON"
 i3-msg "workspace 9; move workspace to output $RIGHT_MON"
+i3-msg "workspace 1; move workspace to output $LEFT"
+i3-msg "workspace 2; move workspace to output $MIDDLE_MON"
+i3-msg "workspace 3; move workspace to output $RIGHT_MON"
 
 # Generate workspace.conf
 OUTPUT_FILE="$HOME/.config/i3/workspaces.conf"
@@ -98,7 +98,6 @@ bindsym \$mod+8 workspace number \$ws8
 bindsym \$mod+9 workspace number \$ws9
 bindsym \$mod+Next workspace next_on_output
 bindsym \$mod+Prior workspace prev_on_output
-
 
 # move focused container to workspace
 bindsym \$mod+Shift+1 move container to workspace number \$ws1;  workspace number \$ws1
