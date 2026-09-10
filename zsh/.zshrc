@@ -113,8 +113,9 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 # Navigation aliases
 alias l='eza'
 alias la='eza -a'
-alias ll='eza -lah'
+alias ll='eza -lah --icons --git'
 alias ls='eza --color=auto'
+alias tree='eza --tree --icons'
 export PATH=$PATH:/home/fpedrera/.local/bin
 eval "$(zoxide init zsh)"
 alias cd=z
@@ -126,13 +127,15 @@ alias pbpaste='xclip -selection clipboard -o'
 alias cpwd="pwd | tr -d '\n' | pbcopy && echo 'pwd copied to clipboard'"
 
 # Configure alias to launch trace
-alias t32ees='/home/fpedrera/t32/bin/pc_linux64/t32mppc -c /home/fpedrera/t32/config_usb.t32'
+alias t32ees='/home/fpedrera/t32_2022/bin/pc_linux64/t32mppc -c /home/fpedrera/teb_projects/TraceConfigs/config_usb_2022_ees.t32'
 alias t32S32G='/home/fpedrera/t32_2022/bin/pc_linux64/t32marm -c /home/fpedrera/teb_projects/TraceConfigs/config_usb_s32g.t32'
 alias t32S32G_2='/home/fpedrera/t32_2022/bin/pc_linux64/t32marm -c /home/fpedrera/teb_projects/TraceConfigs/config_usb_s32g_2.t32'
 alias t32FIR='/home/fpedrera/Desktop/test/T32S32G3/bin/pc_linux64/t32marm -c /home/fpedrera/Desktop/test/T32S32G3/config_usb_s32g.t32'
 alias t32_2023='/home/fpedrera/t32_2023/bin/pc_linux64/t32mppc -c /home/fpedrera/teb_projects/TraceConfigs/config_usb_2023.t32'
 alias t32_2024='/home/fpedrera/t32_2024/bin/pc_linux64/t32marm -c /home/fpedrera/teb_projects/TraceConfigs/config_usb_2024.t32'
 alias t32_2024_2='/home/fpedrera/t32_2024/bin/pc_linux64/t32marm -c /home/fpedrera/teb_projects/TraceConfigs/config_usb_2024_2.t32'
+alias t32_riscv='/home/fpedrera/t32_2024/bin/pc_linux64/t32mriscv -c /home/fpedrera/teb_projects/TraceConfigs/config_usb_2024.t32'
+alias t32_cresec='/home/fpedrera/t32_2024/bin/pc_linux64/t32mriscv -c /home/fpedrera/teb_projects/TraceConfigs/config_rem_cresec.t32'
 
 # Configure alias for SIP relay
 export RELAY_SN="0005771676"

@@ -11,11 +11,14 @@ return {
                 },
                 pattern = {
                     ["%.gitlab%-ci%.ya?ml"] = "yaml.gitlab",
+                },
+                extension = {
+                    dld = "ld"
                 }
             })
 
             configs.setup({
-                ensure_installed = { "cpp", "lua", "html", "python", "yaml", "json", "csv", "bash", "t32", "markdown", "javascript", "vue", "cmake" },
+                ensure_installed = { "cpp", "lua", "html", "python", "yaml", "json", "csv", "bash", "t32", "markdown", "javascript", "vue", "cmake", "rst" },
                 sync_install = false,
                 highlight = { enable = true },
                 indent = { enable = true },
