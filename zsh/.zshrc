@@ -71,7 +71,7 @@ ZSH_THEME="dracula"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting tmux extract sudo history-substring-search fzf zsh-interactive-cd tmuxinator)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting extract sudo history-substring-search fzf zsh-interactive-cd tmuxinator)
 
 source $ZSH/oh-my-zsh.sh
 
