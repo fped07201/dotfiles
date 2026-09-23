@@ -53,5 +53,6 @@ alias lg="lazygit"
 alias termshark='TERM=xterm-256color termshark'
 # Tmux related
 alias tn='tmux new-session -A -s "$(basename "$PWD")"'
-alias ts='sesh connect "$(sesh list -i | command fzf --ansi)"'
+# alias ts='sesh connect "$(sesh list -i | command fzf --ansi)"'
+alias ts='sesh picker -i'
 ###################################################
