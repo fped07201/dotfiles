@@ -15,7 +15,7 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 # Navigation aliases
 alias l='eza'
 alias la='eza -a'
-alias ll='eza -lah --icons --git'
+alias ll='eza -lah --icons'
 alias ls='eza --color=auto'
 alias tree='eza --tree --icons'
 export PATH=$PATH:/home/fpedrera/.local/bin
@@ -34,6 +34,8 @@ alias t32FIR='/home/fpedrera/Desktop/test/T32S32G3/bin/pc_linux64/t32marm -c /ho
 alias t32_2023='/home/fpedrera/t32_2023/bin/pc_linux64/t32mppc -c /home/fpedrera/teb_projects/TraceConfigs/config_usb_2023.t32'
 alias t32_2024='/home/fpedrera/t32_2024/bin/pc_linux64/t32marm -c /home/fpedrera/teb_projects/TraceConfigs/config_usb_2024.t32'
 alias t32_2024_2='/home/fpedrera/t32_2024/bin/pc_linux64/t32marm -c /home/fpedrera/teb_projects/TraceConfigs/config_usb_2024_2.t32'
+alias t32_2026_04='/home/fpedrera/t32_2026_04/bin/pc_linux64/t32marm -c /home/fpedrera/teb_projects/TraceConfigs/config_usb_2026_04.t32'
+alias t32_2026_10='/home/fpedrera/t32_2026_10/bin/pc_linux64/t32marm -c /home/fpedrera/teb_projects/TraceConfigs/config_usb_2026_10.t32'
 alias t32_riscv='/home/fpedrera/t32_2024/bin/pc_linux64/t32mriscv -c /home/fpedrera/teb_projects/TraceConfigs/config_usb_2024.t32'
 alias t32_cresec='/home/fpedrera/t32_2024/bin/pc_linux64/t32mriscv -c /home/fpedrera/teb_projects/TraceConfigs/config_rem_cresec.t32'
 # Configure alias for SIP relay

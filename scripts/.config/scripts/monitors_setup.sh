@@ -37,11 +37,14 @@ if pgrep -x polybar >/dev/null; then
     killall -w -9 polybar
 fi
 
+# Single polybar
+MONITOR="$LEFT" polybar i3-unique &
+# Multiple polybar
 # Primary first (tray owner)
-MONITOR="$LEFT" polybar i3-primary &
+# MONITOR="$LEFT" polybar i3-primary &
 # Secondary bars
-[ -n "$MIDDLE" ] && MONITOR="$MIDDLE" polybar i3-secondary &
-[ -n "$RIGHT" ]  && MONITOR="$RIGHT"  polybar i3-secondary &
+# [ -n "$MIDDLE" ] && MONITOR="$MIDDLE" polybar i3-secondary &
+# [ -n "$RIGHT" ]  && MONITOR="$RIGHT"  polybar i3-secondary &
 
 # Wallpaper
 feh --bg-fill /home/fpedrera/Pictures/Wallpapers/kamehouse.jpg
